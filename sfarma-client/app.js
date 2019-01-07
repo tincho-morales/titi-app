@@ -342,8 +342,8 @@ function processLocalId(splittedArray){
   if(splittedArray && splittedArray[0]){
 
       let localData = getLocalByLocalReference(splittedArray[0]);
-      if(localData && localData.localId)
-          return localData.localId;
+      if(localData && localData.finalLocalId)
+          return localData.finalLocalId;
   }
   return "-";
 }

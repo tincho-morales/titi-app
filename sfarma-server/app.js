@@ -225,14 +225,14 @@ function getLocalIdByReferencesLocalId(referenceLocalId){
 	let finalResultData = [];
 	try {
 
-		const queryTickets = "SELECT * FROM REFERENCES_LOCALS WHERE REFERENCES_LOCAL_ID = ?";
+		const queryTickets = "SELECT * FROM REFERENCES_LOCALS WHERE SOURCE_LOCAL_ID = ?";
 
 		let resultData = connection.query(queryTickets,[referenceLocalId]);
 
 		
 		finalResultData = resultData.map((row) =>{
 			
-			return { localId : row.local_id, referencesLocalId:row.references_local_id};
+			return { sourceLocalId : row.source_local_id, finalLocalId:row.final_local_id};
 
 		});
 
@@ -253,7 +253,7 @@ app.get("/loadArticleCodes", (req,res)=> {
 	    .pipe(parse({delimiter: ','}))
 	    .on('data', function(csvrow) {
 
-	        const queryTickets = "UPDATE references_data SET REFERENCE_CODE = ? WHERE REFERENCE_BARCODE = ? ";
+	        const queryTickets = "UPDATE references_codes SET REFERENCE_CODE = ? WHERE REFERENCE_BARCODE = ? ";
 
 	        connection.query(queryTickets,[csvrow[0],csvrow[1]], (error,rows, fields) =>{
 
