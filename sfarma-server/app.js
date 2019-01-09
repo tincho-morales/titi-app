@@ -40,12 +40,14 @@ var connection = new mySql({
 /**************/
 /* SERVICIO DE CONSULTA DE ARTÍCULOS 
  */
-app.get("/article/:productCode", (req,res)=> {
+app.get("/article/:productCode/:productBarcode", (req,res)=> {
 
 
 	const productCode = req.params.productCode;
+	const productBarCode = req.params.productBarcode;
 
-	console.log("Obteniendo identificador de artículo con código :" + productCode);
+	console.log("----------------------------");
+	console.log("Obteniendo identificador de artículo con código :" + productCode + " y código de barras:" + productBarCode);
 
 	let finalProductData = {};
 	
@@ -60,8 +62,14 @@ app.get("/article/:productCode", (req,res)=> {
 			finalProductData.hasPrepack = true;
 			finalProductData.prepacks = prepacksArray;
 	}else{
+
 			// Si no es un prepack consulto la información del item en la base de datos
 			let productData = getProductDataFromProductCode(productCode);
+
+			if(!productData || !productData.length > 0){
+
+					productData = getProductDataFromProductBarcode(productBarCode);
+			}
 
 			finalProductData.productData = productData[0];
 			finalProductData.hasPrepack = false;
@@ -74,13 +82,14 @@ app.get("/article/:productCode", (req,res)=> {
 
 
 /**************/
-/* SERVICIO DE CONSULTA DE ARTÍCULOS 
+/* SERVICIO DE CONSULTA DE LOCALES 
  */
 app.get("/local/:localReferenceId", (req,res)=> {
 
 	
 	const localReferenceId = req.params.localReferenceId;
 
+	console.log("----------------------------");
 	console.log("Obteniendo identificador de almacen:" + localReferenceId);
 	
 	let finalLocalEntity = {};

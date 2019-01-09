@@ -37,7 +37,7 @@ function generateOutputFile(){
 
                  validateInput(lineSplitedArray,lineIndex);
                   
-                 let articleData = getArticleByProductCode(lineSplitedArray[3]);
+                 let articleData = getArticleByProductCode(lineSplitedArray[3],lineSplitedArray[10]);
 
                  if(articleData && articleData.hasPrepack == true){
                       // Procesamos los artículos con prepacks
@@ -170,7 +170,7 @@ function processSimpleLine(lineSplitedArray, articleData){
               return processedLine;
 
           }
-          
+
           processedLine += processRegularProduct(lineSplitedArray, articleData);
       }
 
@@ -230,15 +230,14 @@ function processGiftProduct(lineSplitedArray, articleData){
 
 /**************
 * Metodo que realiza la consula AJAX para obtener información del artículo
-* en función a su código de barras. Con el código de prepack se verifica 
-* ademas si se trata de un artículo prepack
+* en función a su código de artículo. 
 */
-function getArticleByProductCode(productCode){
+function getArticleByProductCode(productCode, productBarcode){
 
 		var articleData = ""
     jQuery.ajax({
     	async: false,
-        url:servicesData.queryArticleCode+productCode,
+        url:servicesData.queryArticleCode+productCode+"/"+productBarcode,
         type:"GET",
         contentType:"application/json; charset=utf-8",
         dataType:"json",
