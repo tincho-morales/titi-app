@@ -169,7 +169,7 @@ function getProductDataFromProductCode(productCode){
 	let finalResultData = [];
 
 	try {
-		const queryReferenceData = "SELECT * FROM REFERENCES_DATA WHERE SOURCE_CODE = ?";
+		const queryReferenceData = "SELECT * FROM REFERENCES_CODES WHERE SOURCE_CODE = ?";
 		
 		let resultData = connection.query(queryReferenceData,[productCode]);
 		
@@ -195,7 +195,7 @@ function getProductDataFromProductBarcode(productBarcode){
 	let finalResultData = [];
 	try {
 
-		const queryTickets = "SELECT * FROM REFERENCES_DATA WHERE SOURCE_BARCODE = ?";
+		const queryTickets = "SELECT * FROM REFERENCES_CODES WHERE SOURCE_BARCODE = ?";
 
 		let resultData = connection.query(queryTickets,[productBarcode]);
 
@@ -236,6 +236,7 @@ function getLocalIdByReferencesLocalId(referenceLocalId){
 
 		});
 
+
 		return finalResultData;
 
 	}catch(error){
@@ -253,7 +254,7 @@ app.get("/loadArticleCodes", (req,res)=> {
 	    .pipe(parse({delimiter: ','}))
 	    .on('data', function(csvrow) {
 
-	        const queryTickets = "UPDATE references_codes SET REFERENCE_CODE = ? WHERE REFERENCE_BARCODE = ? ";
+	        const queryTickets = "UPDATE REFERENCES_CODES SET REFERENCE_CODE = ? WHERE REFERENCE_BARCODE = ? ";
 
 	        connection.query(queryTickets,[csvrow[0],csvrow[1]], (error,rows, fields) =>{
 

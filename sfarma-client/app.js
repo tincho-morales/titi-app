@@ -161,17 +161,18 @@ function processSimpleLine(lineSplitedArray, articleData){
       
       let processedLine = "";
 
-      if(articleData && articleData.productData){
+      if(articleData){
 
-          if(checkIfGift(articleData.productData.sourceDescription)){
+          if(articleData.productData && checkIfGift(articleData.productData.sourceDescription)){
 
-                processedLine += processGiftProduct(lineSplitedArray, articleData);
+              processedLine += processGiftProduct(lineSplitedArray, articleData);
 
-          }else{
-                processedLine += processRegularProduct(lineSplitedArray, articleData);
+              return processedLine;
+
           }
+          
+          processedLine += processRegularProduct(lineSplitedArray, articleData);
       }
-      
 
       return processedLine;
   }
