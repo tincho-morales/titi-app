@@ -7,8 +7,8 @@ exports.configData = {
 
 	prepacksFilePath: './prepacks.xml',
 	appRunningPort: 3003,
-	insertDataTimeOut: 400,
-	insertCodesFileName: 'insert_codes_test.csv',
-	insertLocalsFileName: 'insert_locals_test.csv'
+	insertDataTimeOut: 10,
+	insertCodesFileName: 'codes.csv',
+	insertLocalsFileName: 'locals.csv'
 
 }

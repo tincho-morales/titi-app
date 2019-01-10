@@ -42,12 +42,12 @@ fs.createReadStream(insertCodesFileName)
   .pipe(parse({delimiter: ',',relax_column_count: true}))
   .on('data', function(csvrow) {
 
-        const insertCodesQuery = "INSERT INTO REFERENCES_CODES (source_code, source_barcode,source_description,final_code,final_presentation) "+ 
-        						  "VALUES (?,?,?,?,?)";
+        const insertCodesQuery = "INSERT INTO REFERENCES_CODES (source_code, source_barcode,source_description,final_code,final_presentation, updated) "+ 
+        						  "VALUES (?,?,?,?,?, NOW()) ON DUPLICATE KEY UPDATE source_code=?, source_barcode=?,source_description=?, final_code=?, final_presentation=?, updated=NOW() ";
 
     	try{
-
-    		connection.query(insertCodesQuery,[csvrow[0],csvrow[1],csvrow[2],csvrow[3],csvrow[4]], (error,rows, fields) =>{});
+      var d = new Date().getTime();
+    		connection.query(insertCodesQuery,[csvrow[0],csvrow[1],csvrow[2],csvrow[3],csvrow[4],csvrow[0],csvrow[1],csvrow[2],csvrow[3],csvrow[4]], (error,rows, fields) =>{});
 
     	}catch(error) {
     		console.log("----------------------------------");

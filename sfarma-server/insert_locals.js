@@ -42,12 +42,12 @@ fs.createReadStream(insertLocalsFileName)
   .pipe(parse({delimiter: ',',relax_column_count: true}))
   .on('data', function(csvrow) {
 
-        const insertCodesQuery = "INSERT INTO REFERENCES_LOCALS (source_local_id, final_local_id) "+ 
-                                 "VALUES (?,?)";
+        const insertCodesQuery = "INSERT INTO REFERENCES_LOCALS (source_local_id, final_local_id, updated) "+ 
+                                 "VALUES (?,?,NOW()) ON DUPLICATE KEY UPDATE source_local_id=?, final_local_id=?,updated=NOW() ";
 
         try{
 
-            connection.query(insertCodesQuery,[csvrow[0],csvrow[1]], (error,rows, fields) =>{});
+            connection.query(insertCodesQuery,[csvrow[0],csvrow[1],csvrow[0],csvrow[1]], (error,rows, fields) =>{});
 
         }catch(error) {
             console.log("----------------------------------");
