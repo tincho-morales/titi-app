@@ -433,11 +433,11 @@ function processProductTotalPrice(splittedArray){
 
 function processProductPresentation(articleData){
 
-  if(articleData && articleData.productData){
+  if(articleData && articleData.productData && articleData.productData.finalPresentation){
 
         return articleData.productData.finalPresentation;
   }
-  return "-";
+  return " ";
 }
 
 function processProductLot(splittedArray){
@@ -523,11 +523,11 @@ function processPrepackItemCost(prepack, prepacks){
 
 function processPrepackItemPresentation(articleData){
 
-    if(articleData){
+    if(articleData && articleData.productPresentation){
 
       return articleData.productPresentation;
     }
-    return "-";
+    return " ";
 
 }
 
