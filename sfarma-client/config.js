@@ -3,7 +3,8 @@ var configData = {
 	host: "http://localhost:3003",
 	fileName: "PREING",
 	providerCode: "P038",
-	providerName: "COPIDROGAS"
+	providerName: "COPIDROGAS",
+	defaultExpirationDate:"20200531"
 };
 
 

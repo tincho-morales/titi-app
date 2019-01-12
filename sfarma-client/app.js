@@ -40,11 +40,14 @@ function generateOutputFile(){
                  let articleData = getArticleByProductCode(lineSplitedArray[3],lineSplitedArray[10]);
 
                  if(articleData && articleData.hasPrepack == true){
+
+                      console.log("Prepack");
                       // Procesamos los artículos con prepacks
                       processedLine += processPrepackLine(lineSplitedArray,articleData);
                       // Validaciones de la linea prepack
                       lineIndex = validateOutputPrepackLine(processedLine,lineIndex);
                  }else{
+                      console.log("No prepack");
                       // Procesmamos los artículos simples
                       processedLine += processSimpleLine(lineSplitedArray,articleData);
                       // Validaciones de la linea básica
@@ -76,6 +79,8 @@ function generateOutputFile(){
  * Metodo para procesar los items de tipo prepack
  */
 function processPrepackLine(lineSplitedArray,articleData){
+
+      console.log(articleData);
 
       if(lineSplitedArray && articleData && articleData.prepacks && articleData.prepacks.length > 0){
 
@@ -321,7 +326,7 @@ function getPrepackTotalCost(prepacks){
       
           if(!isNaN(prepack.productCost)){
 
-            totalPrepacksCost += parseInt(prepack.productCost);
+            totalPrepacksCost += parseInt(prepack.productCost.replace(".",""));
           }
       });
   }
@@ -452,7 +457,8 @@ function processExpirationDate(splittedArray){
           return this.formatDate(expirationDate);
 
       }
-      return "-";
+      console.log(configData.defaultExpirationDate);
+      return this.formatDate(configData.defaultExpirationDate);
 }
 
 
@@ -489,21 +495,26 @@ function processPrepackItemCost(prepack, prepacks){
 
     if(prepack && prepacks && prepacks.length > 0){
 
-        let productCost = parseInt(prepack.productCost);
-        let realSaleCost = parseInt(prepack.realSaleCost);
-        let prepackQuantity = parseInt(prepack.quantity);
+        let productCost = parseInt(prepack.productCost.replace(".",""));
+        let realSaleCost = parseInt(prepack.realSaleCost.replace(".",""));
+        let prepackQuantity = parseInt(prepack.quantity.replace(".",""));
+        console.log(productCost);
+        console.log(realSaleCost);
+        console.log(prepackQuantity);
 
         let prepacksTotalCost = getPrepackTotalCost(prepacks);
-
+        console.log(prepacksTotalCost);
 
         let porcentageCost = productCost / prepacksTotalCost;
-
+        console.log(porcentageCost);
 
         let realCostAverage = porcentageCost * realSaleCost;
 
+        console.log(realCostAverage);
+
         let finalItemCost = realCostAverage * prepackQuantity;
 
-        return finalItemCost;
+        return finalItemCost.toFixed(2);;
     }
     return "-";
 

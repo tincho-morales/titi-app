@@ -10,6 +10,7 @@ const parser = require('xml2json');
 const parse = require('csv-parse');
 const sleep = require('system-sleep');
 const mySql = require('sync-mysql');
+const loader = require('csv-load-sync');
 /***********************************/
 /***********************************/
 
@@ -54,7 +55,6 @@ app.get("/article/:productCode/:productBarcode", (req,res)=> {
 
 	// Verifico si el producto es un prepack
 	let prepacksArray = checkPrepacksByProductCode(productCode);
-
 	
 	if(prepacksArray && prepacksArray.length >0){
 			// Si es un prepack mando los items del prepack
@@ -107,65 +107,62 @@ app.get("/local/:localReferenceId", (req,res)=> {
    artículo*/
 function checkPrepacksByProductCode(productCode){
 
-	try {
-		let data = fs.readFileSync(config.configData.prepacksFilePath);
-		
+   try {
+
 		var rowsArray = [];
-		var json = parser.toJson(data);
-		var obj = JSON.parse(json);
-
-		let dataRows = obj['Workbook']['Worksheet']['Table']['Row'];
-
 		let enteredFirstItem = false;
 		let realSaleCostData = 0;
 
-	    dataRows.forEach(function (rowItem,index) {
+		var fileContent = fs.readFileSync(config.configData.prepacksFilePath, 'utf8');
+		var fileLines = fileContent.split("\n");
+		
+		fileLines.forEach(function (rowItem,index) {
 
+				rowItem = rowItem.replace('\r','');
+				let csvrow = rowItem.split(";");
 
-	    	let cellList = rowItem['Cell'];
+		        let prepackCode = csvrow[1];
 
-	    	let prepackCode = cellList[1]['Data']['$t'];
-	    	if(prepackCode && productCode == prepackCode ){
+		    	if(prepackCode && productCode == prepackCode ){
 
-	    		if(!enteredFirstItem){
-	    			realSaleCostData =  cellList[4]['Data']['$t'];
-	    			enteredFirstItem = true;
-	    		}
+			    		if(!enteredFirstItem){
+		    				realSaleCostData =  csvrow[4].trim();
+		    				enteredFirstItem = true;
+		    			}else{
+			    			let productReference = getProductDataFromProductCode(csvrow[7]);
 
-	    		let productReference = getProductDataFromProductCode(cellList[7]['Data']['$t']);
-	    		
-	    		let productCodeData = "-";
-	    		let productPresentationData = "-";
-	    		if(productReference && productReference.length > 0){
-	    			productCodeData = productReference[0].finalCode;
-	    			productPresentationData = productReference[0].finalPresentation;
-	    		}
+			    			if(productReference && productReference.length > 0){
+			    				productCodeData = productReference[0].finalCode;
+			    				productPresentationData = productReference[0].finalPresentation;
+			    			}	
 
-	    		let newRowElement = {
+			    			let newRowElement = {
 
-	    			center: cellList[0]['Data']['$t'],
-	    			code: cellList[1]['Data']['$t'],
-	    			virtualPrepack: cellList[2]['Data']['$t'],
-	    			inventory: cellList[3]['Data']['$t'],
-	    			realSaleCost:realSaleCostData,
-	    			provider: cellList[5]['Data']['$t'],
-	    			quantity: cellList[6]['Data']['$t'],
-	    			productCode: productCodeData,
-	    			productDescription: cellList[8]['Data']['$t'],
-	    			productCost: cellList[9]['Data']['$t'],
-	    			productPresentation: productPresentationData
-	    		}
-	    		rowsArray.push(newRowElement);
-	    	}
-	    });
-
-		return rowsArray;
-
+				    			center: csvrow[0],
+				    			code: csvrow[1],
+				    			virtualPrepack: csvrow[2],
+				    			inventory: csvrow[3],
+				    			realSaleCost:realSaleCostData,
+				    			provider: csvrow[5],
+				    			quantity: csvrow[6],
+				    			productCode: productCodeData,
+				    			productDescription: csvrow[8],
+				    			productCost: csvrow[9].trim(),
+				    			productPresentation: productPresentationData
+			    			}
+			    			rowsArray.push(newRowElement);
+		    			}
+		    	}
+		   });
+		   return rowsArray;
+		  
 	}catch(error){
 		throw "Ocurrio un error verificando si el producto con el códigos "+productCode+" tiene prepacks en el archivo "
 		      +config.configData.prepacksFilePath+" "+error ;
 	}
-}
+
+
+} 
 
 /*************************************************
  * Consultas a la base de datos

@@ -1,0 +1,64 @@
+﻿centro;codigo;prepack;inventario;costoReal;proveedor;unidades;codigo;producto;producto2
+8100;100013266;PREP.JGB BRONQUISOL NINOS PAG.6 LLE.7(A);            24;        97.058;J.G.B. S.A.;1;;;             0
+;100013266;;             0;             0;;1;1;OBS. BRONQUISOL NINOS JARABE 120 ML;        16.853
+;100013266;;             0;             0;;6;100006386;BRONQUISOL NINOS JARABE 120 ML;        16.175
+8100;100013267;PREP.JGB BRONQUISOL ADU.GTS BRO.ADU. (A);             5;       112.025;J.G.B. S.A.;1;;;             0
+;100013267;;             0;             0;;1;100006385;OBS. BRONQUISOL ADULTO JARABE 120 ML;        19.465
+;100013267;;             0;             0;;6;100006385;BRONQUISOL ADULTO JARABE 120 ML;        18.672
+8100;100017529;PREPACK REMO METATITANE POMADA 40 GR 3+1;           349;        84.622;REMO LTDA;1;;;             0
+;100017529;;             0;             0;;1;1;OBS. METATITANE POMADA 40 GR;        25.413
+;100017529;;             0;             0;;3;100005017;METATITANE POMADA 40 GR;        28.207
+8100;100020062;PREP.JGB 2 CITROMEL GTS.ALGODON 50 GR;           877;        23.066;J.G.B. S.A.;1;;;             0
+;100020062;;             0;             0;;1;1;OBSE. ALGODON ZIG ZAG JGB 50;         2.330
+;100020062;;             0;             0;;2;100002314;CITROMEL LIQUIDO 310 ML;        11.534
+8100;200028527;PREP.BDF LIP CARE PG.8 LL.12;            22;        51.441;BEIERSDORF S.A.;1;;;             0
+;200028527;;             0;             0;;5;200016625;PROT.LABIAL NIVEA LIP CARE FRESA;         6.431
+;200028527;;             0;             0;;5;200023558;PROT.LABIAL NIVEA FRUITY SHINE CER 4.8 G;         6.431
+;200028527;;             0;             0;;2;200026835;PROT.LABIAL NIVEA LIP CARE MED FPS 15;         7.387
+8100;200034310;PREPACK DUO SURTIDO 24 UDS (A);           786;       125.117;BEIERSDORF S.A.;1;;;             0
+;200034310;;             0;             0;;4;200032192;PRESERVAT.DUO TORNADO PASSION 3 UDS;         8.062
+;200034310;;             0;             0;;7;200033716;PRESERVAT.DUO NORMAL LUBRICADO 3 UDS S.O;         5.717
+;200034310;;             0;             0;;4;200033717;PRESERVAT.DUO ULTRASENSIBLE 3 UDS S.O;         6.452
+;200034310;;             0;             0;;3;200033718;PRESERVAT.DUO RETARDANTE 3 UDS S.O;         6.452
+;200034310;;             0;             0;;3;200033719;PRESERVAT.DUO G SENSATION 3 UDS S.O;         6.452
+;200034310;;             0;             0;;3;200034309;PRESERVAT.DUO HOT ACTION 3 UDS S.O;         6.452
+8100;200035946;PREPACK JGB MYSTIC 20 UDS PRE.ESP (A);             7;       124.310;J.G.B. S.A.;1;;;             0
+;200035946;;             0;             0;;5;200014392;PRESERVAT.MYSTIC X 3 LUBRICADO;         5.787
+;200035946;;             0;             0;;1;200014395;PRESERVAT.MYSTIC X 3 ULTRA SENSIBLE;         6.716
+;200035946;;             0;             0;;4;200035169;PRESERVAT.MYSTIC X 3 PUNTO G;         7.578
+;200035946;;             0;             0;;2;200035170;PRESERVAT.MYSTIC X 3 EXTREMO;         7.578
+;200035946;;             0;             0;;2;200035171;PRESERVAT.MYSTIC X 3 COMBO PACK;         7.578
+;200035946;;             0;             0;;2;200035172;PRESERVAT.MYSTIC X 3 HOT SENSACION;         7.578
+;200035946;;             0;             0;;2;200035173;PRESERVAT.MYSTIC X 3 LONG ACTION;         7.578
+;200035946;;             0;             0;;2;200035174;PRESERVAT.MYSTIC X 3 TRIPLE PLACER;         7.578
+8100;200035947;PREPACK JGB MYSTIC 60 UDS PRE.ESP (A);            14;       324.693;J.G.B. S.A.;1;;;             0
+;200035947;;             0;             0;;14;200014392;PRESERVAT.MYSTIC X 3 LUBRICADO;         5.787
+;200035947;;             0;             0;;2;200014395;PRESERVAT.MYSTIC X 3 ULTRA SENSIBLE;         6.716
+;200035947;;             0;             0;;10;200035169;PRESERVAT.MYSTIC X 3 PUNTO G;         7.578
+;200035947;;             0;             0;;4;200035170;PRESERVAT.MYSTIC X 3 EXTREMO;         7.578
+;200035947;;             0;             0;;4;200035171;PRESERVAT.MYSTIC X 3 COMBO PACK;         7.578
+;200035947;;             0;             0;;8;200035172;PRESERVAT.MYSTIC X 3 HOT SENSACION;         7.578
+;200035947;;             0;             0;;8;200035173;PRESERVAT.MYSTIC X 3 LONG ACTION;         7.578
+;200035947;;             0;             0;;10;200035174;PRESERVAT.MYSTIC X 3 TRIPLE PLACER;         7.578
+8100;200036544;PREP.NIVEA PROT.LABIAL LIP CARE PG4 LL6;           164;        25.715;BEIERSDORF S.A.;1;;;             0
+;200036544;;             0;             0;;2;200023558;PROT.LABIAL NIVEA FRUITY SHINE CER 4.8 G;         7.578
+;200036544;;             0;             0;;4;200036528;PROT.LABIAL NIVEA BLACKBERRY SHINE MORA;         6.431
+8100;200036894;EXHIBIDOR FORZ SPORT MUNDIAL 2018 6 UDS;            48;        91.577;GERCO;1;;;             0
+;200036894;;             0;             0;;1;1;FORZ SPORT ACEITE RELAJANTE 120ML;        14.030
+;200036894;;             0;             0;;1;2;FORZ SPORT GEL FRIO X 60 GRAMOS;        11.900
+;200036894;;             0;             0;;1;3;FORZ SPORT VENDAJE STRAPPING;        15.936
+;200036894;;             0;             0;;1;4;FORZ SPORT BANDA CORTE FÁCIL;        10.000
+;200036894;;             0;             0;;1;200029537;LINIMENTO FORZ SPORT 200 ML;        26.578
+;200036894;;             0;             0;;1;200032700;CREMA SUPER FORZ SPORT 60 GR;        12.801
+8100;200037578;PREP.9 CRE.NIVEA SURTIDO GTS 3 PRE.DUO;           787;        60.065;BEIERSDORF S.A.;1;;;             0
+;200037578;;             0;             0;;1;1;OBS.PRE.DUO NORMAL LUB. 3 UDS S.O;         5.717
+;200037578;;             0;             0;;1;2;OBS.PRE.DUO TORNADO PASSION 3 UDS;         8.062
+;200037578;;             0;             0;;1;3;OBS. PRE.DUO ULTRASEN. 3 UDS S.O;         6.452
+;200037578;;             0;             0;;4;200036008;CREMA NIVEA CUID.FACIAL NUTRITIVO 50 ML;         5.351
+;200037578;;             0;             0;;3;200036010;CREMA NIVEA CUI.FACIAL ACLARADO NAT.50ML;         6.712
+;200037578;;             0;             0;;2;200036012;CREMA NIVEA CUID.FACI.ANTI ARRUGAS 50 ML;         9.413
+8100;200038293;PREPACK GALLETAS NAVIDAD NOEL EXHIBIDOR;           281;        19.508;COMERCIAL NUTRESA S.A.S;1;;;             0
+;200038293;;             0;             0;;3;1;GAL. NAV. NOEL CARAVANA BOL 150G;         1.950
+;200038293;;             0;             0;;2;2;GAL. NAV. NOEL PLEGADIZA  215 G;         4.950
+;200038293;;             0;             0;;2;3;GAL. NAV. NOEL CARAVANA PLEG 215G;         4.550
+;200038293;;             0;             0;;3;4;GAL. NAVIDAD NOEL BOL 220 G;         3.390

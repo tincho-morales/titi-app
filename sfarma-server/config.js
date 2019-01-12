@@ -5,7 +5,7 @@ exports.configData = {
 	databasePassword : 'root',
 	databaseSchema : 'coopidrogas-comerssia',
 
-	prepacksFilePath: './prepacks.xml',
+	prepacksFilePath: './prepacks.csv',
 	appRunningPort: 3003,
 	insertDataTimeOut: 10,
 	insertCodesFileName: 'codes.csv',
