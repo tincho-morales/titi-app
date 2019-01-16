@@ -145,7 +145,7 @@ function processPrepackGiftLine(lineSplitedArray,articleData,prepackItem){
       processedLine += "Producto OBSEQUIO" + "|"; 
       processedLine += processPrepackItemCode(prepackItem)+ "|";
       processedLine += processPrepackItemQuantity(prepackItem)+ "|";
-      processedLine += 0.0+ "|";
+      processedLine += processPrepackItemCost(prepackItem,articleData.prepacks)+ "|";
       processedLine += processPrepackItemPresentation(prepackItem)+ "|";
       processedLine += processProductLot(lineSplitedArray) + "|";
       processedLine += processExpirationDate(lineSplitedArray);
