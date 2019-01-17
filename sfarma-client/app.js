@@ -41,13 +41,11 @@ function generateOutputFile(){
 
                  if(articleData && articleData.hasPrepack == true){
 
-                      console.log("Prepack");
                       // Procesamos los artículos con prepacks
                       processedLine += processPrepackLine(lineSplitedArray,articleData);
                       // Validaciones de la linea prepack
                       lineIndex = validateOutputPrepackLine(processedLine,lineIndex);
                  }else{
-                      console.log("No prepack");
                       // Procesmamos los artículos simples
                       processedLine += processSimpleLine(lineSplitedArray,articleData);
                       // Validaciones de la linea básica
@@ -80,13 +78,10 @@ function generateOutputFile(){
  */
 function processPrepackLine(lineSplitedArray,articleData){
 
-      console.log(articleData);
-
       if(lineSplitedArray && articleData && articleData.prepacks && articleData.prepacks.length > 0){
 
           let processedLine = "";
           articleData.prepacks.forEach(function(prepackItem){
-
 
             if(checkIfGift(prepackItem.productDescription)){
 
@@ -108,6 +103,9 @@ function processPrepackRegularLine(lineSplitedArray,articleData,prepackItem){
       
 
       let processedLine = "";
+
+      // Procesamos la cantidad del prepack
+      changePrepackItemQuantity(prepackItem,lineSplitedArray);
 
       processedLine += processLocalId(lineSplitedArray)+"|";
       processedLine += processCreatedDate(lineSplitedArray) + "|";
@@ -136,6 +134,9 @@ function processPrepackGiftLine(lineSplitedArray,articleData,prepackItem){
       
 
       let processedLine = "";
+
+      // Procesamos la cantidad del prepack
+      changePrepackItemQuantity(prepackItem,lineSplitedArray);
 
       processedLine += processLocalId(lineSplitedArray)+"|";
       processedLine += processCreatedDate(lineSplitedArray) + "|";
@@ -231,6 +232,18 @@ function processGiftProduct(lineSplitedArray, articleData){
     processedLine += "\n";
 
     return processedLine;
+}
+
+/**************
+* Metodo que procesa la cantidad de los prepacks
+*/
+function changePrepackItemQuantity(prepackItem,lineSplitedArray){
+
+
+    let intPrepackQuantity = parseInt(prepackItem.quantity.replace(".",""));
+    let intPrepackRealQuantity = intPrepackQuantity * lineSplitedArray[5];
+    prepackItem.quantity = intPrepackRealQuantity;
+
 }
 
 /**************
@@ -457,7 +470,6 @@ function processExpirationDate(splittedArray){
           return this.formatDate(expirationDate);
 
       }
-      console.log(configData.defaultExpirationDate);
       return this.formatDate(configData.defaultExpirationDate);
 }
 
@@ -497,20 +509,11 @@ function processPrepackItemCost(prepack, prepacks){
 
         let productCost = parseInt(prepack.productCost.replace(".",""));
         let realSaleCost = parseInt(prepack.realSaleCost.replace(".",""));
-        let prepackQuantity = parseInt(prepack.quantity.replace(".",""));
-        console.log(productCost);
-        console.log(realSaleCost);
-        console.log(prepackQuantity);
+        let prepackQuantity = prepack.quantity;
 
         let prepacksTotalCost = getPrepackTotalCost(prepacks);
-        console.log(prepacksTotalCost);
-
         let porcentageCost = productCost / prepacksTotalCost;
-        console.log(porcentageCost);
-
         let realCostAverage = porcentageCost * realSaleCost;
-
-        console.log(realCostAverage);
 
         let finalItemCost = realCostAverage * prepackQuantity;
 
