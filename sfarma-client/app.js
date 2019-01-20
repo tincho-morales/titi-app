@@ -515,8 +515,6 @@ function processPrepackItemCost(prepack, prepacks,lineSplitedArray){
 
         let finalItemCost = realCostAverage * allProdcutQuantity;
 
-        console.log(allProdcutQuantity);
-
         return finalItemCost.toFixed(2);
     }
     return "-";
