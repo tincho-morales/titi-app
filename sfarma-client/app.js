@@ -105,7 +105,7 @@ function processPrepackRegularLine(lineSplitedArray,articleData,prepackItem){
       let processedLine = "";
 
       // Procesamos la cantidad del prepack
-      changePrepackItemQuantity(prepackItem,lineSplitedArray);
+      
 
       processedLine += processLocalId(lineSplitedArray)+"|";
       processedLine += processCreatedDate(lineSplitedArray) + "|";
@@ -114,8 +114,8 @@ function processPrepackRegularLine(lineSplitedArray,articleData,prepackItem){
       processedLine += processProviderName() + "|";
       processedLine += processPrepackItemObservations(prepackItem) + "|";
       processedLine += processPrepackItemCode(prepackItem)+ "|";
-      processedLine += processPrepackItemQuantity(prepackItem)+ "|";
-      processedLine += processPrepackItemCost(prepackItem,articleData.prepacks)+ "|";
+      processedLine += processPrepackItemQuantity(prepackItem, lineSplitedArray)+ "|";
+      processedLine += processPrepackItemCost(prepackItem,articleData.prepacks,lineSplitedArray)+ "|";
       processedLine += processPrepackItemPresentation(prepackItem)+ "|";
       processedLine += processProductLot(lineSplitedArray) + "|";
       processedLine += processExpirationDate(lineSplitedArray);
@@ -135,9 +135,6 @@ function processPrepackGiftLine(lineSplitedArray,articleData,prepackItem){
 
       let processedLine = "";
 
-      // Procesamos la cantidad del prepack
-      changePrepackItemQuantity(prepackItem,lineSplitedArray);
-
       processedLine += processLocalId(lineSplitedArray)+"|";
       processedLine += processCreatedDate(lineSplitedArray) + "|";
       processedLine += processConsecutiveNumber(lineSplitedArray) + "|";
@@ -145,8 +142,8 @@ function processPrepackGiftLine(lineSplitedArray,articleData,prepackItem){
       processedLine += processProviderName() + "|";
       processedLine += "Producto OBSEQUIO" + "|"; 
       processedLine += processPrepackItemCode(prepackItem)+ "|";
-      processedLine += processPrepackItemQuantity(prepackItem)+ "|";
-      processedLine += processPrepackItemCost(prepackItem,articleData.prepacks)+ "|";
+      processedLine += processPrepackItemQuantity(prepackItem,lineSplitedArray)+ "|";
+      processedLine += processPrepackItemCost(prepackItem,articleData.prepacks,lineSplitedArray)+ "|";
       processedLine += processPrepackItemPresentation(prepackItem)+ "|";
       processedLine += processProductLot(lineSplitedArray) + "|";
       processedLine += processExpirationDate(lineSplitedArray);
@@ -237,13 +234,13 @@ function processGiftProduct(lineSplitedArray, articleData){
 /**************
 * Metodo que procesa la cantidad de los prepacks
 */
-function changePrepackItemQuantity(prepackItem,lineSplitedArray){
+function getPrepackRealItemQuantity(prepackItem,lineSplitedArray){
 
 
     let intPrepackQuantity = parseInt(prepackItem.quantity.replace(".",""));
-    let intPrepackRealQuantity = intPrepackQuantity * lineSplitedArray[5];
-    prepackItem.quantity = intPrepackRealQuantity;
+    let intGeneralItemQuantity = parseInt(lineSplitedArray[5]);
 
+    return intPrepackRealQuantity = intPrepackQuantity * intGeneralItemQuantity;
 }
 
 /**************
@@ -491,33 +488,36 @@ function processPrepackItemCode(articleData){
 
 }
 
-function processPrepackItemQuantity(articleData){
+function processPrepackItemQuantity(prepackItem, lineSplitedArray){
 
-    if(articleData){
+    if(prepackItem){
 
-      return articleData.quantity;
+      return getPrepackRealItemQuantity(prepackItem,lineSplitedArray);
     }
     return "-";
 
 }
 
 
-function processPrepackItemCost(prepack, prepacks){
+function processPrepackItemCost(prepack, prepacks,lineSplitedArray){
 
 
     if(prepack && prepacks && prepacks.length > 0){
 
         let productCost = parseInt(prepack.productCost.replace(".",""));
         let realSaleCost = parseInt(prepack.realSaleCost.replace(".",""));
-        let prepackQuantity = prepack.quantity;
+        let allProdcutQuantity = getPrepackRealItemQuantity(prepack,lineSplitedArray);
 
         let prepacksTotalCost = getPrepackTotalCost(prepacks);
         let porcentageCost = productCost / prepacksTotalCost;
+
         let realCostAverage = porcentageCost * realSaleCost;
 
-        let finalItemCost = realCostAverage * prepackQuantity;
+        let finalItemCost = realCostAverage * allProdcutQuantity;
 
-        return finalItemCost.toFixed(2);;
+        console.log(allProdcutQuantity);
+
+        return finalItemCost.toFixed(2);
     }
     return "-";
 
