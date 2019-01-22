@@ -336,7 +336,10 @@ function getPrepackTotalCost(prepacks){
       
           if(!isNaN(prepack.productCost)){
 
-            totalPrepacksCost += parseInt(prepack.productCost.replace(".",""));
+            prepackCost = parseInt(prepack.productCost.replace(".",""));
+            prepackQuantity = parseInt(prepack.quantity.replace(".",""));
+
+            totalPrepacksCost += prepackCost * prepackQuantity;
           }
       });
   }
@@ -506,14 +509,17 @@ function processPrepackItemCost(prepack, prepacks,lineSplitedArray){
 
         let productCost = parseInt(prepack.productCost.replace(".",""));
         let realSaleCost = parseInt(prepack.realSaleCost.replace(".",""));
-        let allProdcutQuantity = getPrepackRealItemQuantity(prepack,lineSplitedArray);
+        let prepackQuantity = parseInt(prepack.quantity.replace(".",""));
+        let totalProductQuantity = getPrepackRealItemQuantity(prepack,lineSplitedArray);
+
+        let totalPrepackItemCost = productCost * prepackQuantity;
 
         let prepacksTotalCost = getPrepackTotalCost(prepacks);
-        let porcentageCost = productCost / prepacksTotalCost;
+        let porcentageCost = totalPrepackItemCost / prepacksTotalCost;
 
-        let realCostAverage = porcentageCost * realSaleCost;
+        let realCostAverage = (porcentageCost / prepackQuantity)  * realSaleCost;
 
-        let finalItemCost = realCostAverage * allProdcutQuantity;
+        let finalItemCost = realCostAverage * totalProductQuantity;
 
         return finalItemCost.toFixed(2);
     }
