@@ -134,6 +134,7 @@ function checkPrepacksByProductCode(productCode){
 			    			if(productReference && productReference.length > 0){
 			    				productCodeData = productReference[0].finalCode;
 			    				productPresentationData = productReference[0].finalPresentation;
+			    				productHasLotData = productReference[0].hasLot
 			    			}	
 
 			    			let newRowElement = {
@@ -148,7 +149,8 @@ function checkPrepacksByProductCode(productCode){
 				    			productCode: productCodeData,
 				    			productDescription: csvrow[8],
 				    			productCost: csvrow[9].trim(),
-				    			productPresentation: productPresentationData
+				    			productPresentation: productPresentationData,
+				    			hasLot: productHasLotData
 			    			}
 			    			rowsArray.push(newRowElement);
 		    			}
@@ -184,7 +186,7 @@ function getProductDataFromProductCode(productCode){
 		finalResultData = resultData.map((row) =>{
 									return { sourceCode : row.source_code, sourceBarcode:row.source_barcode, 
 					     					 finalPresentation: row.final_presentation,finalCode:row.final_code,
-					     					 sourceDescription : row.source_description };
+					     					 sourceDescription : row.source_description, hasLot : row.has_lot };
 						  });
 
 		return finalResultData;
@@ -211,7 +213,7 @@ function getProductDataFromProductBarcode(productBarcode){
 			
 			return { sourceCode : row.source_code, sourceBarcode:row.source_barcode, 
 				     finalPresentation: row.final_presentation,finalCode:row.final_code,
-				     sourceDescription : row.source_description };
+				     sourceDescription : row.source_description, hasLot : row.has_lot };
 
 		});
 

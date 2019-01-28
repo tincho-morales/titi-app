@@ -1,0 +1,1 @@
+alter table references_codes add `has_lot` BOOL DEFAULT false;

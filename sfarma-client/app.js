@@ -117,7 +117,7 @@ function processPrepackRegularLine(lineSplitedArray,articleData,prepackItem){
       processedLine += processPrepackItemQuantity(prepackItem, lineSplitedArray)+ "|";
       processedLine += processPrepackItemCost(prepackItem,articleData.prepacks,lineSplitedArray)+ "|";
       processedLine += processPrepackItemPresentation(prepackItem)+ "|";
-      processedLine += processProductLot(lineSplitedArray) + "|";
+      processedLine += processPrepackProductLot(lineSplitedArray,prepackItem) + "|";
       processedLine += processExpirationDate(lineSplitedArray);
 
       processedLine += "\n";
@@ -145,7 +145,7 @@ function processPrepackGiftLine(lineSplitedArray,articleData,prepackItem){
       processedLine += processPrepackItemQuantity(prepackItem,lineSplitedArray)+ "|";
       processedLine += processPrepackItemCost(prepackItem,articleData.prepacks,lineSplitedArray)+ "|";
       processedLine += processPrepackItemPresentation(prepackItem)+ "|";
-      processedLine += processProductLot(lineSplitedArray) + "|";
+      processedLine += processPrepackProductLot(lineSplitedArray,prepackItem) + "|";
       processedLine += processExpirationDate(lineSplitedArray);
 
       processedLine += "\n";
@@ -198,7 +198,7 @@ function processRegularProduct(lineSplitedArray, articleData){
    processedLine += processProductQuantity(lineSplitedArray) + "|";
    processedLine += processProductTotalPrice(lineSplitedArray) + "|";
    processedLine += processProductPresentation(articleData)+ "|";
-   processedLine += processProductLot(lineSplitedArray) + "|";
+   processedLine += processProductLot(lineSplitedArray,articleData) + "|";
    processedLine += processExpirationDate(lineSplitedArray);
 
    processedLine += "\n";
@@ -223,7 +223,7 @@ function processGiftProduct(lineSplitedArray, articleData){
     processedLine += processProductQuantity(lineSplitedArray) + "|";
     processedLine += 0.0 + "|";
     processedLine += processProductPresentation(articleData)+ "|";
-    processedLine += processProductLot(lineSplitedArray) + "|";
+    processedLine += processProductLot(lineSplitedArray,articleData) + "|";
     processedLine += processExpirationDate(lineSplitedArray);
 
     processedLine += "\n";
@@ -453,9 +453,18 @@ function processProductPresentation(articleData){
   return " ";
 }
 
-function processProductLot(splittedArray){
+function processProductLot(splittedArray,articleData){
       
-      if(splittedArray && splittedArray[21]){
+      if(splittedArray && splittedArray[21] && articleData.productData.hasLot == 1){
+
+          return splittedArray[21];
+      }
+      return "-";
+}
+
+function processPrepackProductLot(splittedArray,prepackItem){
+      
+      if(splittedArray && splittedArray[21] && prepackItem.hasLot == 1){
 
           return splittedArray[21];
       }
