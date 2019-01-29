@@ -459,7 +459,7 @@ function processProductLot(splittedArray,articleData){
 
           return splittedArray[21];
       }
-      return " ";
+      return "";
 }
 
 function processPrepackProductLot(splittedArray,prepackItem){
@@ -468,7 +468,7 @@ function processPrepackProductLot(splittedArray,prepackItem){
 
           return splittedArray[21];
       }
-      return " ";
+      return "";
 }
 
 function processExpirationDate(splittedArray){
