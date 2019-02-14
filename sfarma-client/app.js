@@ -455,7 +455,7 @@ function processProductPresentation(articleData){
 
 function processProductLot(splittedArray,articleData){
       
-      if(splittedArray && splittedArray[21] && articleData.productData.hasLot == 1){
+      if(splittedArray && splittedArray[21] && articleData.productData && articleData.productData.hasLot == 1){
 
           return splittedArray[21];
       }
@@ -475,6 +475,7 @@ function processExpirationDate(splittedArray){
       
       if(splittedArray && splittedArray[22]){
 
+          console.log(splittedArray[22]);
           var expirationDate = splittedArray[22];
           return this.formatDate(expirationDate);
 
